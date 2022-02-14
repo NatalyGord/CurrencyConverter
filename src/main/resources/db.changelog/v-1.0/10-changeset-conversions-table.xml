@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="2" author="Nataliya_Gordiets">
+        <createTable tableName="conversions">
+            <column name="convId" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="convDate" type="Date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nameVal1" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nameVal2" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="curs" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sumVal" type="double">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
