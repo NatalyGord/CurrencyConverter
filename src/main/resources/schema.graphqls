@@ -30,4 +30,5 @@ type Query {
 
 type Mutation {
   createExchangeRate(date: String!, numCode: String!, charCode: String!, nominal: Int!, name: String!, value: Float!):ExchangeRate!
+  createExchangeRates:[ExchangeRate]
 }
