@@ -6,17 +6,17 @@
 	  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
 
     <changeSet id="1" author="Nataliya_Gordiets">
-        <createTable tableName="exchangeRates">
-            <column name="Id" type="BIGSERIAL">
+        <createTable tableName="exchangerates">
+            <column name="exch_id" type="BIGSERIAL">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="date" type="Date">
+            <column name="date" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="numCode" type="text">
+            <column name="num_code" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="charCode" type="text">
+            <column name="char_code" type="text">
                 <constraints nullable="false"/>
             </column>
             <column name="nominal" type="integer">

@@ -1,20 +1,19 @@
 package org.example.currencyconverter.models;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
-@Table(name = "exchangeRates")
+@Table(name = "exchangerates")
 public class ExchangeRate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private Long id;
+    @Column(name = "exch_id")
+    private Long exchId;
     @Column(name="date", nullable = false)
-    private Date date;
-    @Column(name="numCode", nullable = false)
+    private String date;
+    @Column(name="num_code", nullable = false)
     private String numCode;
-    @Column(name="charCode", nullable = false)
+    @Column(name="char_code", nullable = false)
     private String charCode;
     @Column(name="nominal", nullable = false)
     private int nominal;
@@ -23,15 +22,27 @@ public class ExchangeRate {
     @Column(name="value", nullable = false)
     private double value;
 
-    public Long getId() {
-        return id;
+    public ExchangeRate() {
+
+    }
+    public ExchangeRate(String date, String numCode, String charCode, int nominal, String name, double value) {
+        this.date = date;
+        this.numCode = numCode;
+        this.charCode = charCode;
+        this.nominal = nominal;
+        this.name = name;
+        this.value = value;
     }
 
-    public Date getDate() {
+    public Long getId() {
+        return exchId;
+    }
+
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

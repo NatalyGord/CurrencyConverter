@@ -7,22 +7,22 @@
 
     <changeSet id="2" author="Nataliya_Gordiets">
         <createTable tableName="conversions">
-            <column name="convId" type="BIGSERIAL">
+            <column name="conv_id" type="BIGSERIAL">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="convDate" type="Date">
+            <column name="conv_date" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="nameVal1" type="text">
+            <column name="name_val1" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="nameVal2" type="text">
+            <column name="name_val2" type="text">
                 <constraints nullable="false"/>
             </column>
             <column name="curs" type="double">
                 <constraints nullable="false"/>
             </column>
-            <column name="sumVal" type="double">
+            <column name="sum_val" type="double">
                 <constraints nullable="false"/>
             </column>
         </createTable>

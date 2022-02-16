@@ -1,0 +1,26 @@
+type Query {
+
+}
+
+type Mutation {
+
+}
+
+type ExchangeRate {
+  id: ID
+  date: Date!
+  numCode: String
+  charCode: String
+  nominal: Int!
+  name: String!
+  value: Double!
+}
+
+type Conversion {
+  convId: ID
+  convDate: Date!
+  nameVal1: String!
+  nameVal2: String!
+  curs: Double!
+  sumVal: Double!
+}
