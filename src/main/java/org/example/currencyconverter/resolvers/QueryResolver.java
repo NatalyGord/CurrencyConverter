@@ -5,6 +5,7 @@ import org.example.currencyconverter.models.ExchangeRate;
 import org.example.currencyconverter.repositories.ConversionRepository;
 import org.example.currencyconverter.repositories.ExchangeRateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -31,4 +32,9 @@ public class QueryResolver implements GraphQLQueryResolver {
     public ExchangeRate findRateById(Long Id){
         return exchangeRateRepository.findRateById(Id);
     }
+    //поиск курса по дате
+    public List <ExchangeRate> findRateByDate(String date){
+        return exchangeRateRepository.findRateByDate(date);
+    }
+
 }

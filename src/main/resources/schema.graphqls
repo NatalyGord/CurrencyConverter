@@ -25,6 +25,7 @@ schema {
 type Query {
   allExchangeRate:[ExchangeRate]
   findRateById(exchId:Long):ExchangeRate
+  findRateByDate(date:String):[ExchangeRate]
 }
 
 type Mutation {
