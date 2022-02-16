@@ -23,7 +23,6 @@ public class ExchangeRate {
     private double value;
 
     public ExchangeRate() {
-
     }
     public ExchangeRate(String date, String numCode, String charCode, int nominal, String name, double value) {
         this.date = date;

@@ -1,26 +1,32 @@
-type Query {
-
-}
-
-type Mutation {
-
-}
-
 type ExchangeRate {
-  id: ID
-  date: Date!
-  numCode: String
-  charCode: String
+  exchId: ID
+  date: String!
+  numCode: String!
+  charCode: String!
   nominal: Int!
   name: String!
-  value: Double!
+  value: Float!
 }
 
 type Conversion {
   convId: ID
-  convDate: Date!
+  convDate: String!
   nameVal1: String!
   nameVal2: String!
-  curs: Double!
-  sumVal: Double!
+  curs: Float!
+  sumVal: Float!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  allExchangeRate:[ExchangeRate]
+  findRateById(exchId:Long):ExchangeRate
+}
+
+type Mutation {
+  createExchangeRate(date: String!, numCode: String!, charCode: String!, nominal: Int!, name: String!, value: Float!):ExchangeRate!
 }
