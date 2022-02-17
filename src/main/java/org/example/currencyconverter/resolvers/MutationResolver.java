@@ -2,6 +2,7 @@ package org.example.currencyconverter.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.example.currencyconverter.models.Conversion;
 import org.example.currencyconverter.models.DateCurs;
 import org.example.currencyconverter.models.ExchangeRate;
 import org.example.currencyconverter.models.Valute;
@@ -10,12 +11,14 @@ import org.example.currencyconverter.repositories.ExchangeRateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Column;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class MutationResolver implements GraphQLMutationResolver {
@@ -79,5 +82,36 @@ public class MutationResolver implements GraphQLMutationResolver {
             }
         }
         return exchangeRateRepository.findRateByDate(date);
+    }
+
+    //Расчет конвертаций и их запись в БД
+    public Double createConversion(String nameVal1, String nameVal2,
+                                   Double sumVal1) {
+        Double cursVal1;
+        Double cursVal2;
+        Integer nominalVal1;
+        Integer nominalVal2;
+        String convDate;
+        List <ExchangeRate> exchangeRates = createExchangeRates();
+        ExchangeRate exchangeRate1 = exchangeRates.stream().filter(i -> i.getName().equals(nameVal1)).collect(Collectors.toList()).get(0);
+        convDate = exchangeRate1.getDate();
+        cursVal1 = exchangeRate1.getValue();
+        nominalVal1 = exchangeRate1.getNominal();
+        ExchangeRate exchangeRate2 = exchangeRates.stream().filter(i -> i.getName().equals(nameVal2)).collect(Collectors.toList()).get(0);
+        cursVal2 = exchangeRate2.getValue();
+        nominalVal2 = exchangeRate2.getNominal();
+
+        Conversion conversion = new Conversion();
+        conversion.setConvDate(convDate);
+        conversion.setNameVal1(nameVal1);
+        conversion.setNameVal2(nameVal2);
+        conversion.setSumVal1(sumVal1);
+        double curs = (cursVal1 / nominalVal1) / (cursVal2 / nominalVal2);
+        conversion.setCurs(curs);
+        double sumVal2 = sumVal1 * curs;
+        conversion.setSumVal2(sumVal2);
+
+        conversionRepository.save(conversion);
+        return conversion.getSumVal2();
     }
 }

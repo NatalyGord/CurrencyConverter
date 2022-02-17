@@ -36,5 +36,4 @@ public class QueryResolver implements GraphQLQueryResolver {
     public List <ExchangeRate> findRateByDate(String date){
         return exchangeRateRepository.findRateByDate(date);
     }
-
 }

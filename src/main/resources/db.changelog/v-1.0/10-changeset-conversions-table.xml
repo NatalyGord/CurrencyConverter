@@ -22,7 +22,10 @@
             <column name="curs" type="double">
                 <constraints nullable="false"/>
             </column>
-            <column name="sum_val" type="double">
+            <column name="sum_val1" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sum_val2" type="double">
                 <constraints nullable="false"/>
             </column>
         </createTable>
