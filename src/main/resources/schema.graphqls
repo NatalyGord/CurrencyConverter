@@ -14,7 +14,8 @@ type Conversion {
   nameVal1: String!
   nameVal2: String!
   curs: Float!
-  sumVal: Float!
+  sumVal1: Float!
+  sumVal2: Float!
 }
 
 schema {
@@ -26,6 +27,7 @@ type Query {
   allExchangeRate:[ExchangeRate]
   findRateById(exchId:Long):ExchangeRate
   findRateByDate(date:String):[ExchangeRate]
+  allConversion:[Conversion]
 }
 
 type Mutation {

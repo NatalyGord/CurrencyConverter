@@ -1,6 +1,7 @@
 package org.example.currencyconverter.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import org.example.currencyconverter.models.Conversion;
 import org.example.currencyconverter.models.ExchangeRate;
 import org.example.currencyconverter.repositories.ConversionRepository;
 import org.example.currencyconverter.repositories.ExchangeRateRepository;
@@ -35,5 +36,10 @@ public class QueryResolver implements GraphQLQueryResolver {
     //поиск курса по дате
     public List <ExchangeRate> findRateByDate(String date){
         return exchangeRateRepository.findRateByDate(date);
+    }
+
+    //Вывод всех элементов из таблицы conversions
+    public List<Conversion> allConversion() {
+        return conversionRepository.findAll();
     }
 }
