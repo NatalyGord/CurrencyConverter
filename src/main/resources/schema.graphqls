@@ -28,6 +28,7 @@ type Query {
   findRateById(exchId:Long):ExchangeRate
   findRateByDate(date:String):[ExchangeRate]
   allConversion:[Conversion]
+  allConversionLimit10:[Conversion]
 }
 
 type Mutation {

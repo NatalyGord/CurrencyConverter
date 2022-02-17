@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class QueryResolver implements GraphQLQueryResolver {
@@ -41,5 +42,9 @@ public class QueryResolver implements GraphQLQueryResolver {
     //Вывод всех элементов из таблицы conversions
     public List<Conversion> allConversion() {
         return conversionRepository.findAll();
+    }
+    //Вывод всех элементов из таблицы conversions лимит 10
+    public List<Conversion> allConversionLimit10() {
+        return conversionRepository.findAll().stream().limit(10).collect(Collectors.toList());
     }
 }
