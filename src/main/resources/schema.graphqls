@@ -29,6 +29,7 @@ type Query {
   findRateByDate(date:String):[ExchangeRate]
   allConversion:[Conversion]
   allConversionLimit10:[Conversion]
+  middleRate(nameVal1:String!, nameVal2:String!):Float!
 }
 
 type Mutation {

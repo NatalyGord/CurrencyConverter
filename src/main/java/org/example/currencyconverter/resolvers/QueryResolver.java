@@ -47,4 +47,16 @@ public class QueryResolver implements GraphQLQueryResolver {
     public List<Conversion> allConversionLimit10() {
         return conversionRepository.findAll().stream().limit(10).collect(Collectors.toList());
     }
+
+    //Расчет среднего курса обмена валют
+    public double middleRate(String nameVal1, String nameVal2){
+        double sumRate = 0.0;
+        List<Conversion> conversions = allConversion().stream()
+                .filter(i -> i.getNameVal1().equals(nameVal1)).filter(k -> k.getNameVal2().equals(nameVal2)).collect(Collectors.toList());
+
+        for (Conversion conversion: conversions) {
+            sumRate += conversion.getCurs();
+        }
+        return sumRate / conversions.size();
+    }
 }
