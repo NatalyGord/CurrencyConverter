@@ -6,9 +6,7 @@ import org.example.currencyconverter.models.ExchangeRate;
 import org.example.currencyconverter.repositories.ConversionRepository;
 import org.example.currencyconverter.repositories.ExchangeRateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,12 +28,14 @@ public class QueryResolver implements GraphQLQueryResolver {
     public List<ExchangeRate> allExchangeRate() {
         return exchangeRateRepository.findAll();
     }
+
     //поиск курса валют по Id
-    public ExchangeRate findRateById(Long Id){
+    public ExchangeRate findRateById(Long Id) {
         return exchangeRateRepository.findRateById(Id);
     }
+
     //поиск курса по дате
-    public List <ExchangeRate> findRateByDate(String date){
+    public List<ExchangeRate> findRateByDate(String date) {
         return exchangeRateRepository.findRateByDate(date);
     }
 
@@ -43,18 +43,19 @@ public class QueryResolver implements GraphQLQueryResolver {
     public List<Conversion> allConversion() {
         return conversionRepository.findAll();
     }
+
     //Вывод всех элементов из таблицы conversions лимит 10
     public List<Conversion> allConversionLimit10() {
         return conversionRepository.findAll().stream().limit(10).collect(Collectors.toList());
     }
 
     //Расчет среднего курса обмена валют
-    public double middleRate(String nameVal1, String nameVal2){
+    public double middleRate(String nameVal1, String nameVal2) {
         double sumRate = 0.0;
         List<Conversion> conversions = allConversion().stream()
                 .filter(i -> i.getNameVal1().equals(nameVal1)).filter(k -> k.getNameVal2().equals(nameVal2)).collect(Collectors.toList());
 
-        for (Conversion conversion: conversions) {
+        for (Conversion conversion : conversions) {
             sumRate += conversion.getCurs();
         }
         return sumRate / conversions.size();

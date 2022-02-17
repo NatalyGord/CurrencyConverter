@@ -93,13 +93,26 @@ public class MutationResolver implements GraphQLMutationResolver {
         Integer nominalVal2;
         String convDate;
         List <ExchangeRate> exchangeRates = createExchangeRates();
-        ExchangeRate exchangeRate1 = exchangeRates.stream().filter(i -> i.getName().equals(nameVal1)).collect(Collectors.toList()).get(0);
-        convDate = exchangeRate1.getDate();
-        cursVal1 = exchangeRate1.getValue();
-        nominalVal1 = exchangeRate1.getNominal();
-        ExchangeRate exchangeRate2 = exchangeRates.stream().filter(i -> i.getName().equals(nameVal2)).collect(Collectors.toList()).get(0);
-        cursVal2 = exchangeRate2.getValue();
-        nominalVal2 = exchangeRate2.getNominal();
+        convDate = exchangeRates.get(1).getDate();
+
+        if(nameVal1.equals("Российский рубль")){
+            cursVal1 =1.0;
+            nominalVal1 = 1;
+        }
+        else {
+            ExchangeRate exchangeRate1 = exchangeRates.stream().filter(i -> i.getName().equals(nameVal1)).collect(Collectors.toList()).get(0);
+            cursVal1 = exchangeRate1.getValue();
+            nominalVal1 = exchangeRate1.getNominal();
+        }
+        if(nameVal2.equals("Российский рубль")){
+            cursVal2 =1.0;
+            nominalVal2 = 1;
+        }
+        else {
+            ExchangeRate exchangeRate2 = exchangeRates.stream().filter(i -> i.getName().equals(nameVal2)).collect(Collectors.toList()).get(0);
+            cursVal2 = exchangeRate2.getValue();
+            nominalVal2 = exchangeRate2.getNominal();
+        }
 
         Conversion conversion = new Conversion();
         conversion.setConvDate(convDate);
