@@ -10,6 +10,7 @@ import org.example.currencyconverter.repositories.ConversionRepository;
 import org.example.currencyconverter.repositories.ExchangeRateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.persistence.Column;
 import java.io.BufferedReader;
